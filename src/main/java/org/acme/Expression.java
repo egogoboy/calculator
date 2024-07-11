@@ -2,20 +2,20 @@ package org.acme;
 
 public class Expression {
 
-    private int firstNum;
-    private int secondNum;
-    private char operator;
+    final private double firstNum;
+    final private double secondNum;
+    final private char operator;
 
-    public Expression(int firstNum, int secondNum, char operator) {
+    public Expression(double firstNum, double secondNum, char operator) {
         this.firstNum = firstNum;
         this.secondNum = secondNum;
         this.operator = operator;
     }
 
-    public int getFirstNum() {
+    public double getFirstNum() {
         return firstNum;
     }
-    public int getSecondNum() {
+    public double getSecondNum() {
         return secondNum;
     }
     public char getOperator() {
