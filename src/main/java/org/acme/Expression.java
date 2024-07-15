@@ -2,8 +2,8 @@ package org.acme;
 
 public class Expression {
 
-    final private double firstNum;
-    final private double secondNum;
+    final private Double firstNum;
+    final private Double secondNum;
     final private char operator;
 
     public Expression(double firstNum, double secondNum, char operator) {
