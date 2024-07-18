@@ -44,12 +44,6 @@
             <artifactId>quarkus-jsonb</artifactId>
             <version>3.12.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.quarkus/quarkus-rest -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest</artifactId>
-            <version>3.12.1</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/io.quarkus/quarkus-rest-jackson -->
         <dependency>
             <groupId>io.quarkus</groupId>

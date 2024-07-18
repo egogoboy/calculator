@@ -4,9 +4,9 @@ public class Expression {
 
     final private Double firstNum;
     final private Double secondNum;
-    final private char operator;
+    final private String operator;
 
-    public Expression(double firstNum, double secondNum, char operator) {
+    public Expression(double firstNum, double secondNum, String operator) {
         this.firstNum = firstNum;
         this.secondNum = secondNum;
         this.operator = operator;
@@ -18,7 +18,7 @@ public class Expression {
     public double getSecondNum() {
         return secondNum;
     }
-    public char getOperator() {
+    public String getOperator() {
         return operator;
     }
 
