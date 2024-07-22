@@ -32,10 +32,6 @@
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-arc</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.quarkus/quarkus-jsonb -->
@@ -101,6 +97,7 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
+
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire-plugin.version}</version>
