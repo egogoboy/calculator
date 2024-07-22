@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class ResultOfCalculation {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String result;
+    private Double result;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String error;
 
@@ -23,10 +23,10 @@ public class ResultOfCalculation {
     }
 
     public void setResult(double result) {
-        this.result = Double.toString(result);
+        this.result = result;
     }
 
-    public String getResult() {
+    public Double getResult() {
         return result;
     }
 
