@@ -1,48 +1,74 @@
 package org.acme;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.persistence.*;
+
+import java.util.Objects;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "expressions")
-public class DatabaseExpression {
+public class DatabaseExpression extends PanacheEntityBase {
 
-    @Column
     @Id
-    private double firstNum;
+    @GeneratedValue(strategy = IDENTITY)
+    private Long id;
 
-    @Column
-    private double secondNum;
+    @Column(name = "first_num")
+    private Double firstNum;
+
+    @Column(name = "second_num")
+    private Double secondNum;
 
     @Column
     private String operation;
 
-    public DatabaseExpression(){}
-
-    public void setFirstNum(double firstNum) {
-        this.firstNum = firstNum;
+    public DatabaseExpression() {
     }
 
-    public void setSecondNum(double secondNum) {
-        this.secondNum = secondNum;
+    public Long getId() {
+        return id;
     }
 
-    public void setOperation(String operation) {
-        this.operation = operation;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public double getFirstNum() {
+    public Double getFirstNum() {
         return firstNum;
     }
 
-    public double getSecondNum() {
+    public void setFirstNum(Double firstNum) {
+        this.firstNum = firstNum;
+    }
+
+    public Double getSecondNum() {
         return secondNum;
+    }
+
+    public void setSecondNum(Double secondNum) {
+        this.secondNum = secondNum;
     }
 
     public String getOperation() {
         return operation;
     }
 
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DatabaseExpression that = (DatabaseExpression) o;
+        return Objects.equals(id, that.id) && Objects.equals(firstNum, that.firstNum) && Objects.equals(secondNum, that.secondNum) && Objects.equals(operation, that.operation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstNum, secondNum, operation);
+    }
 }

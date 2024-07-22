@@ -1,6 +1,5 @@
 package org.acme;
 
-import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
@@ -9,15 +8,12 @@ import java.util.List;
 @Path("/calculator")
 public class CalculatorResource {
 
-    @Inject
-    ExpressionRepository expressionRepository;
-/*
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public List<DatabaseExpression> getAllExpressions() {
-        return expressionRepository.findAll().list();
+        return DatabaseExpression.findAll().list();
     }
-*/
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     //@Consumes(MediaType.APPLICATION_JSON)
