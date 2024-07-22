@@ -9,40 +9,42 @@ import java.util.List;
 @Path("/calculator")
 public class CalculatorResource {
 
-    @Inject
-    ExpressionRepository expressionRepository;
-/*
+
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public List<DatabaseExpression> getAllExpressions() {
-        return expressionRepository.findAll().list();
+        return DatabaseExpression.findAll().list();
     }
-*/
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    //@Consumes(MediaType.APPLICATION_JSON)
-    public ResultOfCalculation Calculate(Expression expression) {
-        ResultOfCalculation result = new ResultOfCalculation();
-        switch (expression.getOperator()) {
-            case '+':
-                result.setResult(expression.getFirstNum() + expression.getSecondNum());
-            break;
-            case '-':
-                result.setResult(expression.getFirstNum() - expression.getSecondNum());
-            break;
-            case '*':
-                result.setResult(expression.getFirstNum() * expression.getSecondNum());
-            break;
-            case '/':
-                if (expression.getSecondNum() != 0)
-                    result.setResult(expression.getFirstNum() / expression.getSecondNum());
-                else {
-                    result.setError("Деление на ноль");
-                }
-            break;
-            default:
-                result.setError("Неверный оператор");
+    public ResultOfCalculation Calculate(Expression expression) throws NumberFormatException {
+        try {
+            ResultOfCalculation result = new ResultOfCalculation();
+            switch (expression.getOperator()) {
+                case '+':
+                    result.setResult(expression.getFirstNum() + expression.getSecondNum());
+                    break;
+                case '-':
+                    result.setResult(expression.getFirstNum() - expression.getSecondNum());
+                    break;
+                case '*':
+                    result.setResult(expression.getFirstNum() * expression.getSecondNum());
+                    break;
+                case '/':
+                    if (expression.getSecondNum() != 0)
+                        result.setResult(expression.getFirstNum() / expression.getSecondNum());
+                    else {
+                        result.setError("Деление на ноль");
+                    }
+                    break;
+                default:
+                    result.setError("Неверный оператор");
+            }
+            return result;
         }
-        return result;
+        catch (NullPointerException e) {
+            return new ResultOfCalculation();
+        }
     }
 }
