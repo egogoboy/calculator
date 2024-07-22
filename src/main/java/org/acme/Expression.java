@@ -4,12 +4,12 @@ public class Expression {
 
     final private Double firstNum;
     final private Double secondNum;
-    final private String operator;
+    final private String operation;
 
-    public Expression(double firstNum, double secondNum, String operator) {
+    public Expression(double firstNum, double secondNum, String operation) {
         this.firstNum = firstNum;
         this.secondNum = secondNum;
-        this.operator = operator;
+        this.operation = operation;
     }
 
     public double getFirstNum() {
@@ -18,8 +18,8 @@ public class Expression {
     public double getSecondNum() {
         return secondNum;
     }
-    public String getOperator() {
-        return operator;
+    public String getOperation() {
+        return operation;
     }
 
 }

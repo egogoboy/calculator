@@ -1,5 +1,6 @@
 package org.acme;
 
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
@@ -10,17 +11,20 @@ public class CalculatorResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public List<DatabaseExpression> getAllExpressions() {
+
         return DatabaseExpression.findAll().list();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     //@Consumes(MediaType.APPLICATION_JSON)
     public ResultOfCalculation Calculate(Expression expression) throws NumberFormatException {
         try {
             ResultOfCalculation result = new ResultOfCalculation();
-            switch (expression.getOperator()) {
+            switch (expression.getOperation()) {
                 case "+":
                     result.setResult(expression.getFirstNum() + expression.getSecondNum());
                     break;
@@ -44,13 +48,11 @@ public class CalculatorResource {
                     result.setError("Неверный оператор");
                     break;
             }
+            DatabaseExpression.persist(new DatabaseExpression(expression));
             return result;
         }
         catch (NullPointerException e) {
             System.out.println(e.getMessage());
-            System.out.println(expression.getFirstNum());
-            System.out.println(expression.getSecondNum());
-            System.out.println(expression.getOperator());
             return new ResultOfCalculation();
         }
     }

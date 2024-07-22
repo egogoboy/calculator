@@ -27,6 +27,12 @@ public class DatabaseExpression extends PanacheEntityBase {
     public DatabaseExpression() {
     }
 
+    public DatabaseExpression(Expression expression) {
+        this.firstNum = expression.getFirstNum();
+        this.secondNum = expression.getSecondNum();
+        this.operation = expression.getOperation();
+    }
+
     public Long getId() {
         return id;
     }
