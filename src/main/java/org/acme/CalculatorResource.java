@@ -24,6 +24,7 @@ public class CalculatorResource {
     public ResultOfCalculation Calculate(Expression expression) throws NumberFormatException {
         try {
             ResultOfCalculation result = new ResultOfCalculation();
+            DatabaseExpression databaseExpression = new DatabaseExpression(expression);
             switch (expression.getOperation()) {
                 case "+":
                     result.setResult(expression.getFirstNum() + expression.getSecondNum());
@@ -48,11 +49,17 @@ public class CalculatorResource {
                     result.setError("Неверный оператор");
                     break;
             }
-            DatabaseExpression.persist(new DatabaseExpression(expression));
+            DatabaseExpression.persist(databaseExpression);
+            System.out.println("result = " + result.getResult() + "\nerror = " + result.getError() + "\n");
             return result;
         }
         catch (NullPointerException e) {
             System.out.println(e.getMessage());
+            System.out.println("{\n" +
+                               "    firstNum: " + expression.getFirstNum() + ",\n" +
+                               "    secondNum: " + expression.getSecondNum() + ",\n" +
+                               "    operation: " + expression.getOperation() +
+                               "\n}");
             return new ResultOfCalculation();
         }
     }
